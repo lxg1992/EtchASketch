@@ -1,1 +1,48 @@
-Test
+<head>
+        <title>Etch a Sketch</title>
+        <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <button id="resetBtn" value="Reset">Reset</button>
+    <div class="grid-container">
+
+    </div>
+</body>
+
+<script>
+
+const container = document.querySelector('.grid-container');
+
+function createGrid(wid){
+    var num = wid * wid;
+    while (container.firstChild){
+        container.removeChild(container.firstChild);
+    }
+    for (var i = 1; i <= num; i++){
+            var gridCell = document.createElement('div');
+            //gridCell.className = `grid-item`;
+            //gridCell.innerHTML = `${i}`;
+            container.appendChild(gridCell);
+            gridCell.style.width = 800/wid;
+            gridCell.style.height = 800/wid;
+            gridCell.addEventListener("mouseover", (e) => {
+                e.target.style.backgroundColor = 'red';
+            }, false);
+
+            
+    }
+}
+
+createGrid(16);
+
+
+
+
+const btnReset = document.getElementById('resetBtn');
+btnReset.addEventListener('click', () => {
+    var cellChoice = window.prompt('How many cells across do you wish the grid to be?');
+    createGrid(cellChoice);
+}, false);
+
+</script>
